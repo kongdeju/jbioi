@@ -1,4 +1,4 @@
-FROM kongdeju/ubuntu-base
+FROM kongdeju/ubuntu-base:stable
 
 MAINTAINER kongdeju <kongdeju@gene.ac>
 

@@ -1,0 +1,37 @@
+FROM centos:7
+
+MAINTAINER kongdeju <kongdeju@gene.ac>
+
+ENV PYTHON_VERSION 2.7.12
+
+
+# set yum 
+RUN sed -i.backup 's/^enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf && \
+    curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && \
+    yum localinstall -y --nogpgcheck https://mirrors.aliyun.com/epel/epel-release-latest-7.noarch.rpm && \ 
+    curl -o /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo 
+
+RUN yum install -y wget && \
+    yum install -y git && \
+    yum install -y gcc && \
+    yum install -y make && \
+    yum -y install openssl openssl-devel ncurses-devel  bzip2-devel sqlite-devel python-devel   zlib-devel  readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel && \
+    yum clean all
+    
+# install python and pip
+RUN set -x \
+    && mkdir -p /usr/src/python \
+    && curl -SL "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz" -o python.tar.xz \
+    && tar -xJC /usr/src/python --strip-components=1 -f python.tar.xz \
+    && rm python.tar.xz* \
+    && cd /usr/src/python \
+    && ./configure \
+    && make  \
+    && make install \
+    && wget https://bootstrap.pypa.io/get-pip.py \
+    && python get-pip.py \
+    && rm -rf /usr/src/python 
+
+# install jbiot
+RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple jbiot
+

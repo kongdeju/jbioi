@@ -11,7 +11,10 @@ ENV PATH="/opt/conda/bin:$PATH"
 RUN wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O conda.sh && \
     mkdir -p /opt/conda && \
     sh conda.sh -b -f -p /opt/conda && \
-    rm conda.sh && \
-    conda config --add channels  https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/ && \
-    pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple jbiot
+    rm conda.sh 
+
+RUN conda config --add channels  https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/ 
+
+# install jbiot
+RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple jbiot
 

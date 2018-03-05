@@ -12,5 +12,6 @@ RUN mv /etc/apk/repositories /etc/apk/repositories.bark \
     && echo "http://mirrors.ustc.edu.cn/alpine/v3.7/community/" >> /etc/apk/repositories
 
 # add jiot                         
-RUN  pip install  -i --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple jbiot 
+#RUN  pip install  -i --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple jbiot 
+RUN  pip install  jbiot 
 

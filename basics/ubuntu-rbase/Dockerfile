@@ -18,3 +18,8 @@ RUN conda config --add channels  https://mirrors.ustc.edu.cn/anaconda/cloud/bioc
 # install jbiot
 RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple jbiot
 
+RUN echo 'options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))' >> ~/.Rprofile && \
+    echo 'options(BioC_mirror="https://mirrors.ustc.edu.cn/bioc/")' >> ~/.Rprofile
+
+
+

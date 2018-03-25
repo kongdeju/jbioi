@@ -13,5 +13,5 @@ RUN mv /etc/apk/repositories /etc/apk/repositories.bark \
 
 # add jiot                         
 #RUN  pip install  -i --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple jbiot 
-RUN  pip install  jbiot 
+RUN  pip install  -U jbiot
 
